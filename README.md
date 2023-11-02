@@ -1,0 +1,7 @@
+# Data Structures and Algorithms
+### Data Structures:
+
+    - ArrayList: A simple implementation of an arraylist in C, the implementation consists on a heap allocated array, i make use of some functions from stdlib like malloc for allocate specific memory on the heap; realloc for realloc the arraylist that already exists, this is for make more space on the heap and the function give me a pointer to the new position on the heap that can be the same as the "old" array or can be a new section on the memory, then for insert an element on a specific index on the arrayList I use the memcpy approach instead of the for loop approach because it can be faster in some scenarios and equal in other (I've never worked with realloc and memcpy I use the man pages) so, for insert an element on a specific place I create a new array with malloc that has the same size of the arrayList plus one, the plus one is because I want to insert an element (basic xd) then with memcpy the program copies index elements from the begin of the first array to the new array (this is because when i copy index elements I copy one position before the position that I want to insert an element, 0 indexed arraylist) then I copy from array+index-1 at the next region of the new array this means that I copy one element twice, this is because I'll re asign the position at index for the element that the function receives and so on and so forth.
+
+    - LinkedList:
+
