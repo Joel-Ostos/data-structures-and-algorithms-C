@@ -11,7 +11,11 @@ struct ArrayList {
 
 static void check(int* ptr)
 {
-  if (!ptr) exit(1);
+  if (!ptr){
+    perror("Error Alocando la memoría");
+    exit(1);
+  } 
+
 }
 
 struct ArrayList allocate(size_t size)
@@ -19,58 +23,58 @@ struct ArrayList allocate(size_t size)
   int* array =  (int*) malloc(size * sizeof(int));
   check(array);
 
-  if (array){
+  if (array) {
     struct ArrayList arrayl = {.size = size, .size_a = 0, .array = array}; 
     return arrayl;
   }
 
 }
 
-void push_back(struct ArrayList* array, int el)
+void push_back(struct ArrayList* arr, int el)
 {
-  if (array->size > array->size_a){
-    array->array[array->size_a] = el;
-    array->size_a += 1;
+  if (arr->size > arr->size_a){
+    arr->array[arr->size_a] = el;
+    arr->size_a += 1;
   } else {
-    int* realloc_array = (int*) realloc(array->array, (array->size *sizeof(int)) + sizeof(int));
+    int* realloc_array = (int*) realloc(arr->array, (arr->size *sizeof(int)) + sizeof(int));
     check(realloc_array);
     
-    array->array = realloc_array;
-    array->array[array->size] = el;
-    array->size += 1;
-    array->size_a += 1;
+    arr->array = realloc_array;
+    arr->array[arr->size] = el;
+    arr->size += 1;
+    arr->size_a += 1;
   }
 }
 
-void add(struct ArrayList* array, size_t index, int el)
+void add(struct ArrayList* arr, size_t index, int el)
 {
-  int* new_array = (int*) malloc( array->size * sizeof(int) + sizeof(int));
-  memcpy(new_array, array->array, (index) * sizeof(int));
-  memcpy(new_array + index, array->array+index-1, (array->size - index + 1) * sizeof(int));
-  free(array->array);
-  array->array = new_array;
+  int* new_array = (int*) malloc( arr->size * sizeof(int) + sizeof(int));
+  memcpy(new_array, arr->array, (index) * sizeof(int));
+  memcpy(new_array + index, arr->array+index-1, (arr->size-index+1) * sizeof(int));
+  free(arr->array);
+  arr->array = new_array;
   new_array[index] = el;
-  array->size += 1;
-  array->size_a += 1;
+  arr->size += 1;
+  arr->size_a += 1;
 }
 
-int delete(struct ArrayList* array, int index)
+int delete(struct ArrayList* arr, int index)
 {
-  int* new_array = (int*) malloc((array->size-1) * sizeof(int));
-  int devolver = array->array[index];
-  memcpy(new_array, array->array, (index) * sizeof(int));
-  memcpy(new_array + index, array->array + index + 1, (array->size-index-1) * sizeof(int));
-  free(array->array);
-  array->array = new_array;
-  array->size -= 1;
-  array->size_a -= 1;
-  //assert(devolver == 50);
+  int* new_array = (int*) malloc((arr->size-1) * sizeof(int));
+  int devolver = arr->array[index];
+  memcpy(new_array, arr->array, (index) * sizeof(int));
+  memcpy(new_array + index, arr->array + index + 1, (arr->size-index-1) * sizeof(int));
+  free(arr->array);
+  arr->array = new_array;
+  arr->size -= 1;
+  arr->size_a -= 1;
+
   return devolver;
 }
 
-void deallocate(struct ArrayList* array)
+void deallocate(struct ArrayList* arr)
 {
-    free(array->array);
+    free(arr->array);
 }
 
 // TODO Implement all the tests
@@ -80,7 +84,7 @@ void test(char* word, int expected)
 
 int main(void)
 {
-  struct ArrayList mi_arreglo = allocate(10);
+  struct ArrayList mi_arreglo = allocate(1000);
 
   for (int i = 0; i < mi_arreglo.size; i++){
     push_back(&mi_arreglo, i);
@@ -119,4 +123,3 @@ int main(void)
   printf("\nArreglo: %d", mi_arreglo.size);
   deallocate(&mi_arreglo);
 }
-
