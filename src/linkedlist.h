@@ -182,7 +182,7 @@
       return;								\
     }									\
   }									\
-  void deinit_array(ArrayList_##type* array)				\
+  void deinit_array_##type(ArrayList_##type* array)			\
   {									\
     free(array->array);							\
     array->array = NULL;						\

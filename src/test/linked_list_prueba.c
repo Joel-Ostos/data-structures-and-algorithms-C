@@ -13,6 +13,7 @@ linkedlist(int)
 linkedlist(char)
 linkedlist(Persona)
 arraylist(int)
+arraylist(ArrayList_int)
 
 Persona crear_persona(int data)
 {
@@ -73,6 +74,12 @@ int main(void)
   int array[20];
   ArrayList_int arreglo = set_array_int(array, 3);
   ArrayList_int arreglo2 = init_array_int(3);
+  ArrayList_ArrayList_int matriz = init_array_ArrayList_int(3);
+  
+  push_back_array_int(&arreglo, 22);
+  push_back_array_int(&arreglo, 39);
+  push_back_array_int(&arreglo, 501);
+
   insert_array_int(&arreglo2,103,0);
   insert_array_int(&arreglo2,104,1);
   insert_array_int(&arreglo2,105,2);
@@ -84,23 +91,35 @@ int main(void)
   for (size_t i = 0; i < arreglo2.capacity; i++) {
     printf("%d ", arreglo2.array[i]);
   }
-  delete_array_int(&arreglo2, 5);
-  delete_array_int(&arreglo2, 0);
-  delete_array_int(&arreglo2, 0);
-  delete_array_int(&arreglo2, 0);
-  delete_array_int(&arreglo2, 0);
-  delete_array_int(&arreglo2, 0);
-  delete_array_int(&arreglo2, 0);
-  delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 5);
+  //delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 0);
+  //delete_array_int(&arreglo2, 0);
   printf("\n%ld\n", arreglo.capacity);
 
   for (size_t i = 0; i < arreglo2.capacity; i++) {
     printf("%d ", arreglo2.array[i]);
   }
-  deinit_array(&arreglo2);
+  //deinit_array_int(&arreglo2);
   if (arreglo2.array){
     for (size_t i = 0; i < arreglo2.capacity; i++) {
       printf("%d ", arreglo2.array[i]);
+    }
+  }
+
+  push_back_array_ArrayList_int(&matriz, arreglo);
+  push_back_array_ArrayList_int(&matriz, arreglo2);
+
+  printf("\n ----- ");
+  printf("\nOcupado: %ld %ld \n", matriz.occupied,  matriz.array->occupied);
+
+  for (size_t i = 0; i < matriz.occupied; i++) {
+    for (size_t j = 0; j < matriz.array[i].occupied; j++) {
+      printf("%d ", matriz.array[i].array[j]);
     }
   }
 }
