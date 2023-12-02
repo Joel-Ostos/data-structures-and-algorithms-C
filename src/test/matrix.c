@@ -22,6 +22,7 @@ int main(void)
   push_back_array_int(&arreglo, 50);
   insert_array_int(&arreglo,103,0);
   push_back_arraymatrix_int(&matriz, &arreglo, true);
+  deinit_array_int(&matriz.array[0]);
   delete_array_ArrayList_int(&matriz, 0);
   push_back_arraymatrix_int(&matriz, &arreglo, true);
   push_back_arraymatrix_int(&matriz, &arreglo, true);
@@ -66,8 +67,11 @@ int main(void)
   }
 
   printf("\nImpresión elementos de la matriz luego de eliminar el subarreglo 1,2,3\n");
+  deinit_array_int(&matriz.array[0]);
   delete_array_ArrayList_int(&matriz, 0);
+  deinit_array_int(&matriz.array[0]);
   delete_array_ArrayList_int(&matriz, 0);
+  deinit_array_int(&matriz.array[0]);
   delete_array_ArrayList_int(&matriz, 0);
 
   for (size_t i = 0; i < matriz.occupied; i++) {
@@ -77,6 +81,7 @@ int main(void)
   }
 
   printf("\nImpresión elementos de la matriz luego de eliminar el último subarreglo \n");
+  deinit_array_int(&matriz.array[0]);
   delete_array_ArrayList_int(&matriz, 0);
 
   for (size_t i = 0; i < matriz.occupied; i++) {
@@ -103,11 +108,10 @@ int main(void)
   }
 
   for (size_t i = 0; i < matriz.occupied; i++) {
-    for (size_t j = 0; j < matriz.array[i].occupied; j++) {
-      printf("%d ", matriz.array[i].array[j]);
-    }
+    deinit_array_int(&matriz.array[i]);
   }
 
+  deinit_array_int(&arreglo2);
   if (arreglo.state) {
     deinit_array_int(&arreglo);
   }
