@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../linkedlist.h"
+#include "../data_structures.h"
 typedef struct Persona Persona;
 
 
