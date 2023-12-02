@@ -22,8 +22,8 @@ int main(void)
   push_back_array_int(&arreglo, 50);
   insert_array_int(&arreglo,103,0);
   push_back_arraymatrix_int(&matriz, &arreglo, true);
-  push_back_arraymatrix_int(&matriz, &arreglo, true);
   delete_array_ArrayList_int(&matriz, 0);
+  push_back_arraymatrix_int(&matriz, &arreglo, true);
   insert_array_int(&arreglo,103,0);
 
   // Colocando elementos en el arraylist 2, tanto en posiciones especificas como en la cola
@@ -34,6 +34,7 @@ int main(void)
   push_back_array_int(&arreglo2, 2);
   push_back_array_int(&arreglo2, 3);
   push_back_array_int(&arreglo2, 5);
+  push_back_arraymatrix_int(&matriz, &arreglo2, true);
   
   for (size_t i = 0; i < arreglo2.capacity; i++) {
     printf("%d ", arreglo2.array[i]);
