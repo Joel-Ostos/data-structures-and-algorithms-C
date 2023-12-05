@@ -230,7 +230,7 @@
     return (ArrayList_##type) {						\
       .array = arr,							\
       .capacity = initial_size,						\
-      .occupied = 0,							\
+      .occupied = initial_size,						\
       .state = false,							\
     };									\
   }									\
