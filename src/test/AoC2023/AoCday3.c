@@ -108,7 +108,7 @@ void day1()
       }
     }
   }
-  printf("%d", sum);
+  printf("\n%d", sum);
   deinit_array_ArrayList_char(&str);
 }
 
@@ -162,23 +162,18 @@ void day2()
 		
 	      } else if (l+2 >= 0 && l+2 < TEST && str.array[k].array[l+2] >= 48 && str.array[k].array[l+2] <= 57
 			 && l+1 >= 0 && l+1 < TEST && str.array[k].array[l+1] >= 48 && str.array[k].array[l+1] <= 57
-			 && parents[k][l] == -1 
-			 && parents[k][l+2] == -1
-			 && parents[k][l+1] == -1
-			 ) {
+			 && parents[k][l] == -1 && parents[k][l+2] == -1 && parents[k][l+1] == -1) {
 		char tmp[3] = { str.array[k].array[l], str.array[k].array[l+1], str.array[k].array[l+2]};
 		tmp[3]='\0';
 		cont++;
 		if (cont==1) mult1 = atoi(tmp);else if(cont==2) mult2 = atoi(tmp);
 		parents[k][l] = 1 ;
-		parents[k][l+2] = 1;
 		parents[k][l+1] = 1;
+		parents[k][l+2] = 1;
 
 	      } else if (l+1 >= 0 && l+1 < TEST && str.array[k].array[l+1] >= 48 && str.array[k].array[l+1] <= 57
 			 && l-1 >= 0 && l-1 < TEST && (str.array[k].array[l-1] < 48 || str.array[k].array[l-1] > 57)
-			 && parents[k][l] == -1 
-			 && parents[k][l+1] == -1
-			 ) {
+			 && parents[k][l] == -1 && parents[k][l+1] == -1) {
 		char tmp[2] = {str.array[k].array[l], str.array[k].array[l+1]};
 		tmp[2]='\0';
 		cont++;
@@ -188,10 +183,10 @@ void day2()
 		
 	      } else if (l+1 >= 0 && l+1 < TEST && str.array[k].array[l+1] >= 48 && str.array[k].array[l+1] <= 57
 			 && l-1 >= 0 && l-1 < TEST && str.array[k].array[l-1] >= 48 && str.array[k].array[l-1] <= 57
+			 && l >= 0 && l < TEST && str.array[k].array[l] >= 48 && str.array[k].array[l] <= 57
 			 && parents[k][l] == -1 
 			 && parents[k][l-1] == -1
-			 && parents[k][l+1] == -1
-			 ){
+			 && parents[k][l+1] == -1) {
 		char tmp[3] = { str.array[k].array[l-1], str.array[k].array[l], str.array[k].array[l+1]};
 		tmp[3]='\0';
 		cont++;
@@ -199,13 +194,20 @@ void day2()
 		parents[k][l] = 1 ;
 		parents[k][l-1] = 1;
 		parents[k][l+1] = 1;
-
+	      } else if (l+1 >= 0 && l+1 < TEST && (str.array[k].array[l+1] < 48 || str.array[k].array[l+1] > 57)
+			 && l-1 >= 0 && l-1 < TEST && (str.array[k].array[l-1] < 48 || str.array[k].array[l-1] > 57)
+			 && l >= 0 && l < TEST && str.array[k].array[l] >= 48 && str.array[k].array[l-1] <= 57
+			 && parents[k][l] == -1) {
+		cont++;
+		if (cont==1) mult1 =(str.array[k].array[l]-0)-48;else if(cont==2) mult2 = (str.array[k].array[l]-0)-48;
+		parents[k][l] = 1 ;
 	      }
 	    }
 	  }
 	}
       }
       if (cont == 2) {
+	printf("\n %lld %lld", mult1, mult2);
 	suma += mult1*mult2;
       }
     }
