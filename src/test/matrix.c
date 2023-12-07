@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "../data_structures.h"
 
 arraylist(int)
@@ -91,7 +92,7 @@ int main(void)
   }
 
   printf("\nImpresión elementos de la matriz luego de añadir un arreglo\n");
-  push_back_array_ArrayList_int(&matriz, arreglo);
+  push_back_arraymatrix_int(&matriz, &arreglo, true);
 
   for (size_t i = 0; i < matriz.occupied; i++) {
     for (size_t j = 0; j < matriz.array[i].occupied; j++) {
