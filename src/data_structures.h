@@ -299,7 +299,7 @@
 	if (array->occupied < array->capacity) {			\
 	  ArrayList_##type new = init_array_##type(data->occupied);	\
 	  new.occupied = data->occupied;				\
-	  memcpy(new.array, data->array, sizeof(data->array[0])*data->occupied ); \
+	  memcpy(new.array, data->array, sizeof(type)*data->occupied ); \
 	  array->array[array->occupied] = new;				\
 	  array->occupied += 1;						\
 	  return;							\
@@ -307,7 +307,7 @@
 	array->array = (ArrayList_##type*) realloc(array->array,(array->capacity + 1) * sizeof(ArrayList_##type)); \
 	ArrayList_##type new = init_array_##type(data->occupied); \
 	new.occupied = data->occupied;					\
-	memcpy(new.array, data->array, sizeof(data->array[0])*data->occupied ); \
+	memcpy(new.array, data->array, sizeof(type)*data->occupied ); \
 	array->array[array->occupied] = new;				\
 	array->occupied += 1;						\
 	array->capacity += 1;						\

@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -g
 INC_DIR = src
 SRC_DIR = src/test
