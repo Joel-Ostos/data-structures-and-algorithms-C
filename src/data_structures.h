@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <string.h>
 
+// TODO ***: Stack y Queue
+// TODO **: Árboles rojinegros
+
 /*
  Documentación:
  LinkedList: Las siguientes estructuras:
